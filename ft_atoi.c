@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tools.h                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 16:34:58 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/25 16:54:27 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/25 14:58:39 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/25 15:06:36 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOOLS_H
+#include "ft_tools.h"
 
-# define FT_TOOLS_H
+int			ft_atoi(char *str)
+{
+	int		num;
+	int		i;
+	int		sign;
 
-void		ft_putchar(char c);
-void		ft_putstr(char *str);
-void		ft_putnbr(int nb);
-int			ft_atoi(char *str);
-int			ft_get_number(char **str);
-int			ft_is_space(char c);
-char		*ft_trim(char *str);
-
-#endif
+	num = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == '	' || str[i] == ' ')
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
+		num = num * 10 + str[i] - 48;
+	return (num);
+}

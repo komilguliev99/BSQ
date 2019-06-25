@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tools.h                                         :+:      :+:    :+:   */
+/*   file_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 16:34:58 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/25 16:54:27 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/25 13:15:01 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/25 13:47:09 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOOLS_H
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <cntl.h>
+#include "file_tools.h"
 
-# define FT_TOOLS_H
+int			readf_to_list(char *file_path, t_list *list)
+{
+	int		o_state;
+	int		ret;
+	char	buf[BUF_SIZE + 1];
 
-void		ft_putchar(char c);
-void		ft_putstr(char *str);
-void		ft_putnbr(int nb);
-int			ft_atoi(char *str);
-int			ft_get_number(char **str);
-int			ft_is_space(char c);
-char		*ft_trim(char *str);
-
-#endif
+	o_state = open(file_path, O_RDONLY);
+	if (o_state == -1)
+		return (0);
+	while ((ret = read(o_state, buf, BUF_SIZE)))
+	{
+		buf[ret] = '\0';
+		push(&list, buf) 
+	}
+}

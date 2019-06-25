@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tools.h                                         :+:      :+:    :+:   */
+/*   ft_trim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 16:34:58 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/25 16:54:27 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/25 16:30:45 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/25 16:58:46 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOOLS_H
+#include "ft_tools.h"
 
-# define FT_TOOLS_H
+char		*ft_trim(char *str)
+{
+	int		sz;
 
-void		ft_putchar(char c);
-void		ft_putstr(char *str);
-void		ft_putnbr(int nb);
-int			ft_atoi(char *str);
-int			ft_get_number(char **str);
-int			ft_is_space(char c);
-char		*ft_trim(char *str);
-
-#endif
+	while (ft_is_space(*str))
+		str++;
+	sz = 0;
+	while (str[sz] != '\0')
+		sz++;
+	while (ft_is_space(str[sz]))
+		sz--;
+	str[sz + 1] = '\0';
+	return (str);
+}

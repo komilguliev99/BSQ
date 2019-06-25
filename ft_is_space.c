@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tools.h                                         :+:      :+:    :+:   */
+/*   ft_is_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 16:34:58 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/25 16:54:27 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/25 16:27:49 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/25 16:52:00 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOOLS_H
+#include "ft_tools.h"
 
-# define FT_TOOLS_H
-
-void		ft_putchar(char c);
-void		ft_putstr(char *str);
-void		ft_putnbr(int nb);
-int			ft_atoi(char *str);
-int			ft_get_number(char **str);
-int			ft_is_space(char c);
-char		*ft_trim(char *str);
-
-#endif
+int		ft_is_space(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\v'
+			|| c == '\f' || c == '\r' || c == ' ')
+		return (1);
+	return (0);
+}
