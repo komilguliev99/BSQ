@@ -6,7 +6,7 @@
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:34:58 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/25 16:54:27 by dcapers          ###   ########.fr       */
+/*   Updated: 2019/06/26 12:09:51 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ int			ft_atoi(char *str);
 int			ft_get_number(char **str);
 int			ft_is_space(char c);
 char		*ft_trim(char *str);
+char		*ft_trim_l(char *str);
+char		*ft_trim_r(char *str);
 
 #endif

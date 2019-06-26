@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_space.c                                      :+:      :+:    :+:   */
+/*   not_square.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/25 16:27:49 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/26 12:11:21 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/26 15:09:42 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/26 18:23:46 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tools.h"
+#include "bsq.h"
 
-int		ft_is_space(char c)
+int			not_in_square(int i, int j, t_square *sq)
 {
-	if (c == '\t' || c == '\n' || c == '\v'
-			|| c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
+	if (i >= sq->cord->y && i < sq->cord->y + sq->length
+			&& j >= sq->cord->x && j < sq->cord->x + sq->length)
+		return (0);
+	return (1);
 }

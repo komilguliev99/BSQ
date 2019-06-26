@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_space.c                                      :+:      :+:    :+:   */
+/*   is_map_sym.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/25 16:27:49 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/26 12:11:21 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/26 19:56:56 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/26 20:04:43 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tools.h"
+#include "bsq.h"
 
-int		ft_is_space(char c)
+int		is_map_sym(t_bsq_info *info, char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v'
-			|| c == '\f' || c == '\r' || c == ' ')
+	if (c == info->empty_c || c == info->obstacle_c)
 		return (1);
 	return (0);
 }
