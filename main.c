@@ -6,7 +6,7 @@
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 15:46:40 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/27 03:44:10 by dcapers          ###   ########.fr       */
+/*   Updated: 2019/06/27 06:22:13 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	run_programm(int state, char *file_path)
 		info->map = list_to_argv(list, info);
 		clear_list(&list);
 		calc_square(info, 0, 0);
+		printf("END OF CALC\n");
 		show_map(info, info->map);
 	}
 	else
