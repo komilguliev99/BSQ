@@ -6,7 +6,7 @@
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 15:48:40 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/26 20:02:17 by dcapers          ###   ########.fr       */
+/*   Updated: 2019/06/27 02:18:56 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ typedef struct		s_bsq_info
 }					t_bsq_info;
 
 void				bsq(char *file_path);
-t_bsq_info			*set_bsq_info(char *str);
+void				set_bsq_info(char *str, t_bsq_info *info);
 int					calc_square(t_bsq_info *info, int i, int j);
 int					not_in_square(int i, int j, t_square *sq);
 void				show_map(t_bsq_info *bsq, char **map);
 int					is_map_sym(t_bsq_info *info, char c);
+void				clear_bsq(t_bsq_info *bsq);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 20:56:37 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/26 21:13:09 by dcapers          ###   ########.fr       */
+/*   Updated: 2019/06/27 03:53:17 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int			get_length(t_list *list)
 				sz++;
 			}
 			else
-				break;
+				break ;
 		if (sz)
-			return (sz - 1);
+			return (sz);
 		list = list->next;
 	}
 	return (0);
@@ -43,23 +43,23 @@ int			get_length(t_list *list)
 char		*get_first_line(t_list *list)
 {
 	int		len;
+	int		i;
 	char	*str;
 	char	*str_it;
 
 	len = get_length(list);
-	printf("LENGOF:  %i\n", len);
 	str = malloc(len + 1);
+	i = 0;
 	while (list)
 	{
 		str_it = list->value;
-		while (*str_it != '\0' && len)
+		while (i < len && str_it[i] != '\0')
 		{
-			*str = *str_it;
-			str++;
-			str_it++;
-			len--;
+			str[i] = str_it[i];
+			i++;
 		}
 		list = list->next;
 	}
+	str[i] = '\0';
 	return (str);
 }

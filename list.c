@@ -6,7 +6,7 @@
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 15:53:56 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/26 13:23:10 by dcapers          ###   ########.fr       */
+/*   Updated: 2019/06/27 01:42:31 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_list		*new_list(char *new_val)
 	tmp->next = NULL;
 	return (tmp);
 }
-
 
 void		push(t_list **list, char *new_val)
 {
@@ -62,7 +61,6 @@ void		print_list(t_list *list)
 	{
 		ft_putstr(list->value);
 		list = list->next;
-		ft_putchar('\n');
 	}
 }
 

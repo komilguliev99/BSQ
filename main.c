@@ -6,7 +6,7 @@
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 15:46:40 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/26 21:10:27 by dcapers          ###   ########.fr       */
+/*   Updated: 2019/06/27 03:44:10 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,55 +18,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-void	print_bsq(t_bsq_info *bsq)
+void	allocate_bsq(t_bsq_info **bsq)
 {
-	printf("%i, %c, %c, %c, %i\n",
-			bsq->n_line,
-			bsq->empty_c,
-			bsq->obstacle_c,
-			bsq->full_c,
-			bsq->l_line
-		  );
+	*bsq = malloc(sizeof(t_bsq_info));
+	(*bsq)->sq = malloc(sizeof(t_square));
+	(*bsq)->sq->cord = malloc(sizeof(t_point));
+	(*bsq)->sq->length = 0;
+	(*bsq)->sq->cord->x = -1;
+	(*bsq)->sq->cord->y = -1;
 }
 
-
-void	print_argv(char **av)
+void	run_programm(int state, char *file_path)
 {
-	int		i;
-	int		j;
+	t_bsq_info		*info;
+	t_list			*list;
 
-	i = 0;
-	while (av[i])
+	list = NULL;
+	allocate_bsq(&info);
+	if (readf_to_list(file_path, &list, info, state))
 	{
-		j = 0;
-		while (av[i][j] != '\0')
-		{
-			ft_putchar(av[i][j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
+		info->map = list_to_argv(list, info);
+		clear_list(&list);
+		calc_square(info, 0, 0);
+		show_map(info, info->map);
 	}
+	else
+		write(2, "map error", 9);
+	clear_bsq(info);
 }
 
 int		main(int ac, char **av)
 {
-	t_bsq_info  *info;
-	t_list		*list;
-	t_square	*sq;
 	int			i;
-	char       **map;
-	info = set_bsq_info("   6567238.o  ");
-	print_bsq(info);
-	//print_argv(av);
-	list = NULL;
-	printf("Read State: %i\n", readf_to_list("./test", &list, info));
-	print_list(list);
-	printf("AFTER LENGTH: %s\n", get_first_line(list));
-	map = list_to_argv(list, info);
-	ft_putstr("Was converted!\n");
-	printf("L: %i\n", info->l_line);
-	//print_argv(map);
+
+	if (ac > 1)
+	{
+		i = 1;
+		while (i < ac)
+		{
+			run_programm(1, av[i]);
+			if (i < ac - 1)
+				ft_putchar('\n');
+			i++;
+		}
+	}
+	else
+		run_programm(0, "no_file");
 	return (0);
 }

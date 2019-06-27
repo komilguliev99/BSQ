@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_map.c                                         :+:      :+:    :+:   */
+/*   set_argv_item.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 15:54:46 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/27 03:08:36 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/27 03:19:25 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/27 03:27:48 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
-#include "ft_tools.h"
+#include "file_tools.h"
 
-void	show_map(t_bsq_info *bsq, char **map)
+void	set_argv_item(char *str, char **argv, int *x, int *y)
 {
-	int			i;
-	int			j;
-	t_square	*sq;
+	int		i;
 
-	sq = bsq->sq;
 	i = 0;
-	while (i < bsq->n_line)
+	while (str[i] != '\0')
 	{
-		j = 0;
-		while (j < bsq->l_line)
+		if (str[i] == '\n' && *y)
 		{
-			if (not_in_square(i, j, sq))
-				ft_putchar(map[i][j]);
-			else
-				ft_putchar(bsq->full_c);
-			j++;
+			argv[*y - 1][*x] = str[i];
+			*y = *y + 1;
+			*x = -1;
 		}
-		ft_putchar('\n');
+		else if (str[i] == '\n')
+		{
+			*y = *y + 1;
+			*x = -1;
+		}
+		else if (*y)
+			argv[*y - 1][*x] = str[i];
 		i++;
+		*x = *x + 1;
 	}
 }

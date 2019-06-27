@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_tools.c                                       :+:      :+:    :+:   */
+/*   clear_bsq.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/25 13:15:01 by dcapers           #+#    #+#             */
-/*   Updated: 2019/06/25 13:47:09 by dcapers          ###   ########.fr       */
+/*   Created: 2019/06/27 02:15:40 by dcapers           #+#    #+#             */
+/*   Updated: 2019/06/27 02:19:31 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <cntl.h>
-#include "file_tools.h"
+#include <stdlib.h>
+#include "bsq.h"
 
-int			readf_to_list(char *file_path, t_list *list)
+void	clear_bsq(t_bsq_info *in)
 {
-	int		o_state;
-	int		ret;
-	char	buf[BUF_SIZE + 1];
-
-	o_state = open(file_path, O_RDONLY);
-	if (o_state == -1)
-		return (0);
-	while ((ret = read(o_state, buf, BUF_SIZE)))
-	{
-		buf[ret] = '\0';
-		push(&list, buf) 
-	}
+	free(in->sq->cord);
+	free(in->sq);
+	free(in);
 }
